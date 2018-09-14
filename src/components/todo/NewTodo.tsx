@@ -13,7 +13,7 @@ class NewTodo extends React.PureComponent<PropsFromDispatch & FormComponentProps
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.appContext.actions.todoAdd({ text: values.text, checked: false })
+                this.props.appContext.actions.addTodo({ text: values.text, checked: false })
                 this.props.form.resetFields()
             }
         });

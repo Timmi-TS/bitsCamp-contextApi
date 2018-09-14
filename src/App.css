@@ -12,6 +12,14 @@
     width: 100%;
 }
 
+.App-header.theme-light {
+  background-color: #cccccc;
+  height: 100px;
+  padding: 20px;
+  color: darkblue;
+  width: 100%;
+}
+
 .App-content {
     width: 700px;
     margin: 40px auto;
@@ -19,7 +27,7 @@
 
 .App-title {
     font-size: 2em;
-    color: white;
+    color: inherit;
     text-align: center;
 }
 
@@ -27,11 +35,7 @@
     font-size: large;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.theme-switch {
+  margin-top: 2em;
+  text-align: right;
 }

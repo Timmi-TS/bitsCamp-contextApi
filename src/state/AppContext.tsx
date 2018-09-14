@@ -5,14 +5,21 @@ export interface Todo {
     checked: boolean;
 }
 
+export enum Theme {
+    light = 'light',
+    dark = 'dark'
+}
+
 interface AppContextActions {
-    todoAdd(todo: Todo): void;
-    todoSetChecked(index: number, checked: boolean): void;
-    todoRemove(index: number): void;
+    addTodo(todo: Todo): void;
+    setCheckedTodo(index: number, checked: boolean): void;
+    removeTodo(index: number): void;
+    setTheme(theme: Theme): void
 }
 
 export interface AppContextInterface {
     todos: Todo[];
+    theme: Theme,
     actions: AppContextActions;
 }
 

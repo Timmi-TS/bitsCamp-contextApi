@@ -13,10 +13,10 @@ interface Props {
 
 class TodoList extends React.PureComponent<Props> {
     handleTodoChecked = (index: number, checked: boolean) => {
-        this.props.appContext.actions.todoSetChecked(index, checked);
+        this.props.appContext.actions.setCheckedTodo(index, checked);
     };
     handleTodoDelete = (index: number) => {
-        this.props.appContext.actions.todoRemove(index);
+        this.props.appContext.actions.removeTodo(index);
     }
     renderTodoEntry = (todo: Todo, index: number) => {
         return (

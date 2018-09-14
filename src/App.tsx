@@ -1,11 +1,14 @@
 import * as React from 'react';
 import './App.css';
 import List from './components/todo/List';
+import ThemeSwitch from './components/ThemeSwitch';
+import Title from './components/Title';
 
-import { AppContextInterface, AppContextProvider, Todo } from './state/AppContext';
+import { AppContextInterface, AppContextProvider, Todo, Theme } from './state/AppContext';
 
 interface CompState {
     todos: Todo[];
+    theme: Theme;
 }
 
 const initState = {
@@ -16,9 +19,10 @@ const initState = {
         { text: 'Beeeeer', checked: true },
         { text: '😀 + 🍺 = 😎', checked: false },
     ],
+    theme: Theme.dark,
 };
 
-class App extends React.Component<any, CompState> {
+class AppProvider extends React.PureComponent<any, CompState> {
     sampleAppContext: AppContextInterface;
 
     constructor(props: any) {
@@ -59,32 +63,46 @@ class App extends React.Component<any, CompState> {
         });
     };
 
+    actionSetTheme = (theme: Theme) => {
+        this.setState({
+            theme,
+        });
+    };
+
     public render() {
-        console.log(this);
         return (
             <AppContextProvider
                 value={{
                     todos: this.state.todos,
+                    theme: this.state.theme,
                     actions: {
-                        todoAdd: this.actionTodoAdd,
-                        todoSetChecked: this.actionTodoSetChecked,
-                        todoRemove: this.actionTodoRemove,
+                        addTodo: this.actionTodoAdd,
+                        setCheckedTodo: this.actionTodoSetChecked,
+                        removeTodo: this.actionTodoRemove,
+                        setTheme: this.actionSetTheme,
                     },
                 }}>
-                <div className="App">
-                    <header className="App-header">
-                        <h1 className="App-title">Welcome to bitsCamp</h1>
-                    </header>
-                    <p className="App-intro">
-                        To get started, edit <code>src/App.tsx</code> and save to reload.
-                    </p>
-                    <div className="App-content">
-                        <List />
-                    </div>
-                </div>
+                <App />
             </AppContextProvider>
         );
     }
 }
 
-export default App;
+export default AppProvider;
+
+class App extends React.PureComponent<any> {
+    render() {
+        console.log('render App');
+        console.log(this);
+
+        return (
+            <div className="App">
+                <Title />
+                <div className="App-content">
+                    <List />
+                    <ThemeSwitch />
+                </div>
+            </div>
+        );
+    }
+}
