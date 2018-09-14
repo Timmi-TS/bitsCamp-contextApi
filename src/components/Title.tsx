@@ -9,7 +9,7 @@ class Title extends React.PureComponent<PropsFromState> {
     render() {
         return (
             <header className={'App-header theme-' + this.props.appContext.theme}>
-                <h1 className="App-title">Welcome to bitsCamp</h1>
+                <h1 className="App-title">bitsCamp - Context API</h1>
             </header>
         );
     }
